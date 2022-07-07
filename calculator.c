@@ -3,6 +3,7 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h> /* for atof() */
+#include <math.h>
 
 #define MAXOP 100  /* max size of operand or operator */
 #define NUMBER '0' /* signal that a number was found */
@@ -117,10 +118,21 @@ int getop(char s[]) {
         ;
     s[1] = '\0';
 
-    if (!isdigit(c) && c != '.')
+    if (!isdigit(c) && c != '.' && c != '-')
         return c; // not a number, return the operator
 
     i = 0;
+    
+    if (c == '-') {
+        // if the first character is a '-', then it is a unary operator:
+        if (isdigit(c = getch()) || c == '.') {
+            s[++i] = c;
+        } else {
+            ungetch(c);
+            return '-';
+        }
+    }
+    
     if (isdigit(c)) // collect integer part
         // get next char and add it to the string buffer s:
         while (isdigit(s[++i] = c = getch()))
