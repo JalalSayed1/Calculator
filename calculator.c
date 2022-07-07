@@ -70,6 +70,20 @@ int main() {
             else
                 printf("error: zero divisor\n");
             break;
+
+        case '?':
+            printtop();
+            break;
+        case '#':
+            duplicatetop();
+            break;
+        case '~':
+            swaptoptwo();
+            break;
+        case '!':
+            clearstack();
+            break;
+
         case '\n':
             // %g (Simplified scientific notation) prints the number with the simpler format between %e (scientific notation) and %f (floating point):
             printf("\t%.8g\n", pop());
