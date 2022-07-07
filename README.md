@@ -21,7 +21,7 @@ while (next operator or operand is not end-of-file indicator)
   else
     error
 ```
-
+## Result example:
 ![image](https://user-images.githubusercontent.com/92950538/177803444-2e7c0df5-5bd5-4e71-96fe-e8d0c603ade9.png)
 
 
