@@ -21,6 +21,7 @@ double pop(void);
 int getch(void);
 // Sometimes the program cannot determine that it has read enough input until it has read too much. One instance is collecting the characters that make up a number, until the first non-digit character is found. But then the program has read one character too far, a character that it is not prepared for. The solution is to 'un-read' the character that was read too far. This is done by putting it back into the buffer using ungetch().
 void ungetch(int);
+void printtop(void);
 
 /**
  * @brief Reverse Polish calculator
@@ -123,6 +124,7 @@ int getop(char s[]) {
 
     i = 0;
     
+    // - sign could mean negative number or unary operator:
     if (c == '-') {
         // if the first character is a '-', then it is a unary operator:
         if (isdigit(c = getch()) || c == '.') {
@@ -132,7 +134,7 @@ int getop(char s[]) {
             return '-';
         }
     }
-    
+
     if (isdigit(c)) // collect integer part
         // get next char and add it to the string buffer s:
         while (isdigit(s[++i] = c = getch()))
@@ -169,4 +171,12 @@ void ungetch(int c) {
         printf("ungetch: too many characters\n");
     else
         buf[bufp++] = c;
+}
+
+/**
+ * @brief print top of the stack with popping it.
+ * 
+ */
+void printtop(void) {
+    printf("\t%.8g\n", val[sp - 1]);
 }
