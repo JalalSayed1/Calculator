@@ -1,9 +1,8 @@
 //* gcc -o calculator calculator.c && calculator
 
-#include <ctype.h> /* for isspace() */
+#include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h> /* for atof() */
-//! #include <string.h> /* for strtok() */
 
 #define MAXOP 100  /* max size of operand or operator */
 #define NUMBER '0' /* signal that a number was found */
@@ -19,6 +18,7 @@ int getop(char[]);
 void push(double);
 double pop(void);
 int getch(void);
+// Sometimes the program cannot determine that it has read enough input until it has read too much. One instance is collecting the characters that make up a number, until the first non-digit character is found. But then the program has read one character too far, a character that it is not prepared for. The solution is to 'un-read' the character that was read too far. This is done by putting it back into the buffer using ungetch().
 void ungetch(int);
 
 /**
@@ -57,13 +57,6 @@ int main() {
             else
                 printf("error: zero divisor\n");
             break;
-        //! case '%':
-        //     op2 = pop();
-        //     if (op2 != 0.0)
-        //         push(fmod(pop(), op2));
-        //     else
-        //         printf("error: zero divisor\n");
-        //     break;
         case '\n':
             // %g (Simplified scientific notation) prints the number with the simpler format between %e (scientific notation) and %f (floating point):
             printf("\t%.8g\n", pop());
@@ -121,14 +114,17 @@ int getop(char s[]) {
 
     i = 0;
     if (isdigit(c)) // collect integer part
+        // get next char and add it to the string buffer s:
         while (isdigit(s[++i] = c = getch()))
             ;
 
+    // if last character is a decimal point, collect fractional part:
     if (c == '.') // collect fraction part
         while (isdigit(s[++i] = c = getch()))
             ;
 
     s[i] = '\0';
+    // if last char is not ESF, means we have read one char too far. So we need to ungetch() it:
     if (c != EOF)
         ungetch(c);
     return NUMBER;
@@ -136,7 +132,7 @@ int getop(char s[]) {
 
 /**
  * @brief Get a character from the input.
- * The standard library includes a function ungetc that provides one character of pushback.
+ *
  * @return int character
  */
 int getch(void) {
@@ -145,7 +141,7 @@ int getch(void) {
 
 /**
  * @brief Push a character back into the input.
- *
+ * The standard library includes a function ungetc that provides one character of pushback.
  * @param c character to push back
  */
 void ungetch(int c) {
