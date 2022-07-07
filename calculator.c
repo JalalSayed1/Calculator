@@ -57,6 +57,14 @@ int main() {
             else
                 printf("error: zero divisor\n");
             break;
+        case '%':
+            op2 = pop();
+            if (op2 != 0.0)
+                // fmod returns the remainder of the division of the first operand by the second operand:
+                push(fmod(pop(), op2));
+            else
+                printf("error: zero divisor\n");
+            break;
         case '\n':
             // %g (Simplified scientific notation) prints the number with the simpler format between %e (scientific notation) and %f (floating point):
             printf("\t%.8g\n", pop());
