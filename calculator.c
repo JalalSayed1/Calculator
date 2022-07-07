@@ -22,6 +22,9 @@ int getch(void);
 // Sometimes the program cannot determine that it has read enough input until it has read too much. One instance is collecting the characters that make up a number, until the first non-digit character is found. But then the program has read one character too far, a character that it is not prepared for. The solution is to 'un-read' the character that was read too far. This is done by putting it back into the buffer using ungetch().
 void ungetch(int);
 void printtop(void);
+void duplicatetop(void);
+void swaptoptwo(void);
+void clearstack(void);
 
 /**
  * @brief Reverse Polish calculator
@@ -179,4 +182,30 @@ void ungetch(int c) {
  */
 void printtop(void) {
     printf("\t%.8g\n", val[sp - 1]);
+}
+
+/**
+ * @brief duplicate top element of the stack.
+ * 
+ */
+void duplicatetop(void) {
+    push(val[sp - 1]);
+}
+
+/**
+ * @brief swap top two elements of the stack.
+ * 
+ */
+void swaptoptwo(void) {
+    double temp = val[sp - 1];
+    val[sp - 1] = val[sp - 2];
+    val[sp - 2] = temp;
+}
+
+/**
+ * @brief clear the stack.
+ * 
+ */
+void clearstack(void) {
+    sp = 0;
 }
