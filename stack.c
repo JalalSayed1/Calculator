@@ -1,14 +1,13 @@
 #include "calc.h"
+#include <ctype.h>
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-#define MAXVAL 100  /* maximum depth of val stack */
+#define MAXVAL 100 /* maximum depth of val stack */
+
 int sp = 0;         /* next free stack position */
 double val[MAXVAL]; /* value stack */
-
-void printtop(void);
-void duplicatetop(void);
-void swaptoptwo(void);
-void clearstack(void);
 
 /**
  * @brief Push f into the stack.

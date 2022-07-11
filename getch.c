@@ -1,6 +1,10 @@
 // Sometimes the program cannot determine that it has read enough input until it has read too much. One instance is collecting the characters that make up a number, until the first non-digit character is found. But then the program has read one character too far, a character that it is not prepared for. The solution is to 'un-read' the character that was read too far. This is done by putting it back into the buffer using ungetch().
 
+#include "calc.h"
+#include <ctype.h>
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define BUFSIZE 100
 

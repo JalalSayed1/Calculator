@@ -1,7 +1,10 @@
 
 #include "calc.h"
 #include <ctype.h>
+#include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
+
 
 /**
  * @brief Get a character from the input.

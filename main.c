@@ -1,10 +1,17 @@
-//* gcc -o output main.c && output
+//* gcc -o output main.c stack.c gettop.c getch.c && output
 
-#include "calc.h"
+#include <ctype.h>
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "calc.h"
 
 #define MAXOP 100 /* max size of operand or operator */
+
+void printtop(void);
+void duplicatetop(void);
+void swaptoptwo(void);
+void clearstack(void);
 
 int main() {
 
