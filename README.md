@@ -1,5 +1,5 @@
 # Calculator
-Calculator program that provides the operators +, -, * and /. It uses the reverse Polish notation. Section 4.3 of The C Programming Language. 
+Calculator program that provides the operators +, -, * and / as well as modulus %, print last result ?, duplicate last result #, swap last two results ~ and clear stack (memory) !. . It uses the reverse Polish notation. Section 4.3 of The C Programming Language. 
 
 ## Reverse Polish notation:
 - Each operator follows its operands; an infix expression like (1-2) * (4+5) is entered as 1 2 - 4 5 + *
