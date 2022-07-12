@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 /**
  * @brief Get a character from the input.
  *

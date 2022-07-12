@@ -1,7 +1,6 @@
 #ifndef CALC_H
 #define CALC_H
 
-
 void push(double);
 double pop(void);
 int getop(char[]);
